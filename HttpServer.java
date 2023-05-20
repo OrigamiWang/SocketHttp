@@ -1,6 +1,3 @@
-import webroot.FileUtil;
-import webroot.HtmlFile;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -51,8 +48,8 @@ class HttpRequestHandler implements Runnable {
     private final Socket socket;
     private final BufferedInputStream bis;
     private final OutputStream bos;
-    private static final String fileRoot = "Project3_Socket\\src\\main\\java\\webroot";
-    private static final String uploadFileDir = "Project3_Socket\\src\\main\\java\\webroot\\upload_file";
+    private static final String fileRoot = "D:\\code\\InternetProgramming\\Project4_Socket\\src\\main\\java\\webroot";
+    private static final String uploadFileDir = "D:\\code\\InternetProgramming\\Project4_Socket\\src\\main\\java\\webroot\\upload_file";
 
     @Override
     public void run() {
@@ -179,7 +176,6 @@ class HttpRequestHandler implements Runnable {
                 break;
             default:
         }
-
     }
 
     // 解析头，返回路径中的操作(upload / save)
@@ -211,6 +207,7 @@ class HttpRequestHandler implements Runnable {
         System.out.println("password = " + password);
         // 将username和password存入cookie通过response将其存入Set-Cookie中返回
         // 构造cookie
+
         HttpCookie httpCookie = new HttpCookie.CookieBuilder()
                 .setKey("detail")
                 .setValue("username:" + username + ",password:" + password)
@@ -264,6 +261,13 @@ class HttpRequestHandler implements Runnable {
     }
 
     public void uploadFile(long contentLength, String fileName) throws IOException {
+        // response header
+        HttpResponse response = new HttpResponse.HttpResponseBuilder()
+                .setStatusLine(200)
+                .setContentType("html")
+                .setContentLength(0)
+                .build();
+        bos.write(response.toString().getBytes(StandardCharsets.UTF_8));
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(uploadFileDir + "/" + fileName));
         int len = 1024;
         byte[] buffer = new byte[len];

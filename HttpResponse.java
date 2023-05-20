@@ -16,7 +16,6 @@ public class HttpResponse {
                 .setContentType("html")
                 .build();
         System.out.println(response.toString());
-
     }
 
     private static final String CRLF = "\r\n";

@@ -1,5 +1,3 @@
-package webroot;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -66,5 +64,11 @@ public class FileUtil {
         return formatStr.substring(2, formatStr.length() - 2).trim();
     }
 
+
+    public void parseHtml(String htmlLine) {
+//           <link href="./login.css" rel="stylesheet">
+//        <script type="text/javascript" src="./login.js"></script>
+
+    }
 
 }

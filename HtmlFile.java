@@ -1,5 +1,3 @@
-package webroot;
-
 /**
  * @ClassName File
  * @Author ׂ»לה
